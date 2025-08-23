@@ -1,14 +1,17 @@
+import manager.TaskManager;
+import models.*;
+
 public class Main {
 
     public static void main(String[] args) {
 
         System.out.println("Поехали!");
 
-        Task task1 = new Task("Task Test 1", "Creating new task first time.");
-        Task task2 = new Task("Task Test 2", "Creating new task second time.");
+        Task task1 = new Task("models.Task Test 1", "Creating new task first time.");
+        Task task2 = new Task("models.Task Test 2", "Creating new task second time.");
 
-        Epic epic1 = new Epic("Epic Test 1", "Epic creation with 1 subtask.");
-        Epic epic2 = new Epic("Epic Test 2", "Epic creation with 2 subtasks.");
+        Epic epic1 = new Epic("models.Epic Test 1", "models.Epic creation with 1 subtask.");
+        Epic epic2 = new Epic("models.Epic Test 2", "models.Epic creation with 2 subtasks.");
 
         SubTask subTask1 = new SubTask("Subtask Test 1", "Subtask for the first epic.", epic1);
         SubTask subTask2 = new SubTask("Subtask Test 2", "Subtask for the second epic.", epic2);
@@ -41,14 +44,14 @@ public class Main {
         System.out.println(taskManager.getEpicSubTasks(epic1));
 
         taskManager.deleteTaskByID(task1.getIdentifier());
-        task1.setName("New Task 1");
+        task1.setName("New models.Task 1");
         task1.setDescription("New Description 1");
         taskManager.updateTask(task1);
         System.out.println(taskManager.getAllTasks());
 
         taskManager.deleteEpicByID(epic2.getIdentifier());
-        epic1.setName("New Epic 1");
-        epic1.setDescription("New Epic Description 1");
+        epic1.setName("New models.Epic 1");
+        epic1.setDescription("New models.Epic Description 1");
         taskManager.updateEpic(epic1);
         System.out.println(taskManager.getAllEpics());
 

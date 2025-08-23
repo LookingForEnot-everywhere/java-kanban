@@ -1,3 +1,5 @@
+package models;
+
 public class SubTask extends Task{
     private final int epicID;
 
@@ -13,7 +15,7 @@ public class SubTask extends Task{
 
     @Override
     public String toString() {
-        return "ID: \"" + identifier + "\",\nTask: \"" + name + "\",\nDescription: \"" + description +
-                "\",\nStatus: \"" + status.toString() + "\",\nEpic ID: \"" + epicID + "\".";
+        return "ID: \"" + identifier + "\",\nmodels.Task: \"" + name + "\",\nDescription: \"" + description +
+                "\",\nStatus: \"" + status.toString() + "\",\nmodels.Epic ID: \"" + epicID + "\".";
     }
 }

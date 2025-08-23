@@ -1,10 +1,17 @@
+package manager;
+
 import java.util.HashMap;
+
+import models.*;
 import org.jetbrains.annotations.NotNull; /* IDEA предложила добавить аннотацию, что методы с апдейтом всегда работают
                                              с NotNull объектом, почитал про эту аннотацию, она повышает читаемость кода
                                              и показывает IDEA, что если кто-то передает туда null объект, то это
                                              неправильно. Подумал, что это уместно здесь */
 
+
 public class TaskManager {
+    public static int taskCount = 0;
+
     private final HashMap<Integer, Task> taskList = new HashMap<>();
     private final HashMap<Integer, Epic> epicList = new HashMap<>();
     private final HashMap<Integer, SubTask> subTaskList = new HashMap<>();
@@ -49,14 +56,17 @@ public class TaskManager {
 
     public void addTask(Task task) {
         taskList.put(task.getIdentifier(), task);
+        taskCount++;
     }
 
     public void addEpic(Epic epic) {
         epicList.put(epic.getIdentifier(), epic);
+        taskCount++;
     }
 
     public void addSubTask(SubTask subTask) {
         subTaskList.put(subTask.getIdentifier(), subTask);
+        taskCount++;
     }
 
     public void updateTask(@NotNull Task task) {
@@ -98,18 +108,18 @@ public class TaskManager {
         subTaskList.remove(identifier);
     }
 
-    public HashMap<Integer, SubTask> getEpicSubTasks (Epic epic) {
+    public HashMap<Integer, SubTask> getEpicSubTasks (@NotNull Epic epic) {
         return epicList.get(epic.getIdentifier()).getEpicsSubTaskList();
     }
 
-    public void changeTaskStatus(Task task, TaskStatus taskStatus) {
+    public void changeTaskStatus(@NotNull Task task, TaskStatus taskStatus) {
         taskList.get(task.getIdentifier()).setStatus(taskStatus);
     }
 
-    public void changeSubTaskStatus(SubTask subTask, TaskStatus taskStatus) {
+    public void changeSubTaskStatus(@NotNull SubTask subTask, TaskStatus taskStatus) {
         subTaskList.get(subTask.getIdentifier()).setStatus(taskStatus);
 
-        int epicID = subTaskList.get(subTask.getIdentifier()).getEpicID();
-        epicList.get(epicID).setEpicStatus();
+        int epicId = subTaskList.get(subTask.getIdentifier()).getEpicID();
+        epicList.get(epicId).setEpicStatus();
     }
 }

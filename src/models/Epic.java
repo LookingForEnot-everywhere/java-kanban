@@ -1,4 +1,7 @@
+package models;
+
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Epic extends Task{
     private final HashMap<Integer, SubTask> epicsSubTaskList = new HashMap<>();
@@ -16,33 +19,32 @@ public class Epic extends Task{
     }
 
     public void setEpicStatus() {
-        boolean haveNew = false;
-        boolean haveDone = false;
+        // Спасибо за идею, тоже не нравилось, как я реализовал, но никак не мог придумать ничего лучше. :)
+        ArrayList<TaskStatus> taskStatuses = new ArrayList<>();
 
         for(Integer key : epicsSubTaskList.keySet()) {
             TaskStatus taskStatus1 = epicsSubTaskList.get(key).getStatus();
             if (taskStatus1 == TaskStatus.IN_PROGRESS) {
                 setStatus(TaskStatus.IN_PROGRESS);
                 return;
-            } else if (taskStatus1 == TaskStatus.DONE) {
-                haveDone = true;
-            } else {
-                haveNew = true;
+            } else if (taskStatus1 == TaskStatus.DONE && !taskStatuses.contains(taskStatus1)) {
+                taskStatuses.add(taskStatus1);
+            } else if (taskStatus1 == TaskStatus.NEW && !taskStatuses.contains(taskStatus1)){
+                // Тут сравнение по NEW в первой части можно не писать, но я подумал, что для читаемости будет лучше
+                taskStatuses.add(taskStatus1);
             }
         }
 
-        if (haveNew && !haveDone){
-            return;
-        } else if (!haveNew && haveDone) {
-            setStatus(TaskStatus.DONE);
-        } else {
+        if (taskStatuses.size() == 2){
             setStatus(TaskStatus.IN_PROGRESS);
+        } else {
+            setStatus(taskStatuses.getFirst());
         }
     }
 
     @Override
     public String toString() {
-        String result = "ID: \"" + identifier + "\",\nTask: \"" + name + "\",\nDescription: \"" + description +
+        String result = "ID: \"" + identifier + "\",\nmodels.Task: \"" + name + "\",\nDescription: \"" + description +
                 "\",\nStatus: \"" + status.toString() + "\",\nSubtask list:{\n";
 
         for (Integer key : epicsSubTaskList.keySet()) {

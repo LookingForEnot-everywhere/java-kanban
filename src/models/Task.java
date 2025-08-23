@@ -1,4 +1,6 @@
-import java.util.Objects;
+package models;
+
+import static manager.TaskManager.taskCount;
 
 public class Task {
     protected final int identifier;
@@ -11,6 +13,9 @@ public class Task {
         this.description = description;
         this.status = TaskStatus.NEW;
         this.identifier = hashCode();
+        // Я тут немного закипел, поэтому мог неправильно все таки понять и сделать. :)
+        // По итогу у нас хешкод высчитывается не по полям, а по глобальному счетчику добавленных задач в менеджер
+        // Кажется, что это позволяет в целом уникальный ID сделать, до определенного кол-ва добавленных задач)
     }
 
     public int getIdentifier() {
@@ -47,28 +52,23 @@ public class Task {
         if (task == null) return false;
         if (this.getClass() != task.getClass()) return false;
         Task newTask = (Task) task;
-        return this.identifier == newTask.identifier &&
-                Objects.equals(this.name, newTask.name) &&
-                Objects.equals(this.description, newTask.description) &&
-                Objects.equals(status.name(), newTask.status.name());
+        return this.identifier == newTask.identifier;
     }
 
     @Override
     public int hashCode() {
         int hash = 17;
 
-        if(name != null) hash += name.hashCode();
+        hash += taskCount;
 
         hash *= 31;
-
-        if(description != null) hash += description.hashCode();
 
         return hash;
     }
 
     @Override
     public String toString() {
-        return "ID: \"" + identifier + "\",\nTask: \"" + name + "\",\nDescription: \"" + description +
+        return "ID: \"" + identifier + "\",\nmodels.Task: \"" + name + "\",\nDescription: \"" + description +
                 "\",\nStatus: \"" + status.toString() + "\".";
     }
 }
