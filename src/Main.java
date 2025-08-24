@@ -8,27 +8,28 @@ public class Main {
 
         System.out.println("Поехали!");
 
-        Task task1 = new Task(taskCount, "models.Task Test 1", "Creating new task first time.");
-        Task task2 = new Task(taskCount, "models.Task Test 2", "Creating new task second time.");
-
-        Epic epic1 = new Epic(taskCount, "models.Epic Test 1", "models.Epic creation with 1 subtask.");
-        Epic epic2 = new Epic(taskCount, "models.Epic Test 2", "models.Epic creation with 2 subtasks.");
-
-        SubTask subTask1 = new SubTask(taskCount, "Subtask Test 1", "Subtask for the first epic.", epic1);
-        SubTask subTask2 = new SubTask(taskCount, "Subtask Test 2", "Subtask for the second epic.", epic2);
-        SubTask subTask3 = new SubTask(taskCount, "Subtask Test 3", "Subtask for the second epic.", epic2);
-
         TaskManager taskManager = new TaskManager();
 
+        Task task1 = new Task(taskCount, "models.Task Test 1", "Creating new task first time.");
         taskManager.addTask(task1);
+        Task task2 = new Task(taskCount, "models.Task Test 2", "Creating new task second time.");
         taskManager.addTask(task2);
 
+
+        Epic epic1 = new Epic(taskCount, "models.Epic Test 1", "models.Epic creation with 1 subtask.");
         taskManager.addEpic(epic1);
+        Epic epic2 = new Epic(taskCount, "models.Epic Test 2", "models.Epic creation with 2 subtasks.");
         taskManager.addEpic(epic2);
 
+        SubTask subTask1 = new SubTask(taskCount, "Subtask Test 1", "Subtask for the first epic.", epic1);
         taskManager.addSubTask(subTask1);
+        SubTask subTask2 = new SubTask(taskCount, "Subtask Test 2", "Subtask for the second epic.", epic2);
         taskManager.addSubTask(subTask2);
+        SubTask subTask3 = new SubTask(taskCount, "Subtask Test 3", "Subtask for the second epic.", epic2);
         taskManager.addSubTask(subTask3);
+
+
+
 
         taskManager.changeTaskStatus(task1, TaskStatus.IN_PROGRESS);
         taskManager.changeTaskStatus(task2, TaskStatus.DONE);
