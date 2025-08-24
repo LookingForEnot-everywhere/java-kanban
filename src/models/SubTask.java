@@ -3,8 +3,8 @@ package models;
 public class SubTask extends Task{
     private final int epicID;
 
-    public SubTask (String taskName, String taskDescription, Epic epic) {
-        super(taskName, taskDescription);
+    public SubTask (Integer identifier, String taskName, String taskDescription, Epic epic) {
+        super(identifier, taskName, taskDescription);
         this.epicID = epic.getIdentifier();
         epic.addSubTask(this);
     }

@@ -8,14 +8,14 @@ public class Task {
     protected String description;
     protected TaskStatus status;
 
-    public Task (String name, String description) {
+    public Task (Integer identifier, String name, String description) {
         this.name = name;
         this.description = description;
         this.status = TaskStatus.NEW;
-        this.identifier = hashCode();
-        // Я тут немного закипел, поэтому мог неправильно все таки понять и сделать. :)
-        // По итогу у нас хешкод высчитывается не по полям, а по глобальному счетчику добавленных задач в менеджер
-        // Кажется, что это позволяет в целом уникальный ID сделать, до определенного кол-ва добавленных задач)
+        this.identifier = identifier;
+        taskCount++;
+        // this.identifier = taskCount++;
+        // Я вот подумал, может можно сделать вот так? И скрыть таким образом логику, и в параметры меньше передавать. :)
     }
 
     public int getIdentifier() {

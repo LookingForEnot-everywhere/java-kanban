@@ -56,17 +56,14 @@ public class TaskManager {
 
     public void addTask(Task task) {
         taskList.put(task.getIdentifier(), task);
-        taskCount++;
     }
 
     public void addEpic(Epic epic) {
         epicList.put(epic.getIdentifier(), epic);
-        taskCount++;
     }
 
     public void addSubTask(SubTask subTask) {
         subTaskList.put(subTask.getIdentifier(), subTask);
-        taskCount++;
     }
 
     public void updateTask(@NotNull Task task) {

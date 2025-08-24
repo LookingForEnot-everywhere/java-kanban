@@ -6,8 +6,8 @@ import java.util.ArrayList;
 public class Epic extends Task{
     private final HashMap<Integer, SubTask> epicsSubTaskList = new HashMap<>();
 
-    public Epic (String taskName, String taskDescription) {
-        super(taskName, taskDescription);
+    public Epic (Integer identifier, String taskName, String taskDescription) {
+        super(identifier, taskName, taskDescription);
     }
 
     public void addSubTask(SubTask subTask) {
