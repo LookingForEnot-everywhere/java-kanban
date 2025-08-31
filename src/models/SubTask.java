@@ -15,7 +15,7 @@ public class SubTask extends Task{
 
     @Override
     public String toString() {
-        return "ID: \"" + identifier + "\",\nmodels.Task: \"" + name + "\",\nDescription: \"" + description +
-                "\",\nStatus: \"" + status.toString() + "\",\nmodels.Epic ID: \"" + epicID + "\".";
+        return "ID: \"" + identifier + "\",\nTask: \"" + name + "\",\nDescription: \"" + description +
+                "\",\nStatus: \"" + status.toString() + "\",\nEpic ID: \"" + epicID + "\".";
     }
 }

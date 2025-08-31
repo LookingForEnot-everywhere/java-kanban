@@ -1,6 +1,6 @@
 package models;
 
-import static manager.TaskManager.taskCount;
+import static managers.InMemoryTaskManager.taskCount;
 
 public class Task {
     protected final int identifier;
@@ -13,11 +13,6 @@ public class Task {
         this.description = description;
         this.status = TaskStatus.NEW;
         this.identifier = identifier;
-        // Принято, спасибо)
-        // Получается, что нам тогда нужно будет сразу после создания объекта его добавлять, чтобы две таски не имели
-        // один и тот же ID, кажется это немного неправильным, хотя это же реализация только внутренней логики, при
-        // реализации полноценного приложения с интерфейсом, можно же будет вызов add добавить сразу при создании такса,
-        // верно?
     }
 
     public int getIdentifier() {
@@ -70,7 +65,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "ID: \"" + identifier + "\",\nmodels.Task: \"" + name + "\",\nDescription: \"" + description +
+        return "ID: \"" + identifier + "\",\nTask: \"" + name + "\",\nDescription: \"" + description +
                 "\",\nStatus: \"" + status.toString() + "\".";
     }
 }

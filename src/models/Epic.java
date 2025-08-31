@@ -19,7 +19,6 @@ public class Epic extends Task{
     }
 
     public void setEpicStatus() {
-        // Спасибо за идею, тоже не нравилось, как я реализовал, но никак не мог придумать ничего лучше. :)
         ArrayList<TaskStatus> taskStatuses = new ArrayList<>();
 
         for(Integer key : epicsSubTaskList.keySet()) {
@@ -30,7 +29,6 @@ public class Epic extends Task{
             } else if (taskStatus1 == TaskStatus.DONE && !taskStatuses.contains(taskStatus1)) {
                 taskStatuses.add(taskStatus1);
             } else if (taskStatus1 == TaskStatus.NEW && !taskStatuses.contains(taskStatus1)){
-                // Тут сравнение по NEW в первой части можно не писать, но я подумал, что для читаемости будет лучше
                 taskStatuses.add(taskStatus1);
             }
         }
@@ -44,7 +42,7 @@ public class Epic extends Task{
 
     @Override
     public String toString() {
-        String result = "ID: \"" + identifier + "\",\nmodels.Task: \"" + name + "\",\nDescription: \"" + description +
+        String result = "ID: \"" + identifier + "\",\nTask: \"" + name + "\",\nDescription: \"" + description +
                 "\",\nStatus: \"" + status.toString() + "\",\nSubtask list:{\n";
 
         for (Integer key : epicsSubTaskList.keySet()) {
