@@ -6,15 +6,15 @@ import models.Task;
 import models.TaskStatus;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public interface TaskManager {
-    HashMap<Integer, Task> getAllTasks();
+    List<Task> getAllTasks();
 
-    HashMap<Integer, Epic> getAllEpics();
+    List<Epic> getAllEpics();
 
-    HashMap<Integer, SubTask> getAllSubTasks();
+    List<SubTask> getAllSubTasks();
 
     void clearTaskList();
 
@@ -46,11 +46,11 @@ public interface TaskManager {
 
     void deleteSubTaskByID (int identifier);
 
-    HashMap<Integer, SubTask> getEpicSubTasks (@NotNull Epic epic);
+    Map<Integer, SubTask> getEpicSubTasks (@NotNull Epic epic);
 
     void changeTaskStatus(@NotNull Task task, TaskStatus taskStatus);
 
     void changeSubTaskStatus(@NotNull SubTask subTask, TaskStatus taskStatus);
 
-    ArrayList<Task> getViewingHistory();
+    List<Task> getViewingHistory();
 }

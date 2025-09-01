@@ -1,7 +1,6 @@
 package managers;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 import models.*;
 import org.jetbrains.annotations.NotNull;
@@ -10,24 +9,32 @@ import org.jetbrains.annotations.NotNull;
 public class InMemoryTaskManager implements TaskManager{
     public static int taskCount = 0;
 
-    private final HashMap<Integer, Task> taskList = new HashMap<>();
-    private final HashMap<Integer, Epic> epicList = new HashMap<>();
-    private final HashMap<Integer, SubTask> subTaskList = new HashMap<>();
+    private final Map<Integer, Task> taskList = new HashMap<>();
+    private final Map<Integer, Epic> epicList = new HashMap<>();
+    private final Map<Integer, SubTask> subTaskList = new HashMap<>();
     private final HistoryManager historyManager = Managers.getDefaultHistory();
 
+
+    // Заменил реализацию на копирование, плохо, что я не заметил это сразу, но на будущее буду внимательнее, спасибо)
     @Override
-    public HashMap<Integer, Task> getAllTasks() {
-        return taskList;
+    public List<Task> getAllTasks() {
+        List<Task> copyTaskList = new ArrayList<>(taskList.size() * 2);
+        copyTaskList.addAll(taskList.values());
+        return copyTaskList;
     }
 
     @Override
-    public HashMap<Integer, Epic> getAllEpics() {
-        return epicList;
+    public List<Epic> getAllEpics() {
+        List<Epic> copyEpicList = new ArrayList<>(epicList.size() * 2);
+        copyEpicList.addAll(epicList.values());
+        return copyEpicList;
     }
 
     @Override
-    public HashMap<Integer, SubTask> getAllSubTasks() {
-        return subTaskList;
+    public List<SubTask> getAllSubTasks() {
+        List<SubTask> copySubTaskList = new ArrayList<>(subTaskList.size() * 2);
+        copySubTaskList.addAll(subTaskList.values());
+        return copySubTaskList;
     }
 
     @Override
@@ -110,7 +117,7 @@ public class InMemoryTaskManager implements TaskManager{
 
     @Override
     public void deleteEpicByID (int identifier) {
-        HashMap<Integer, SubTask> epicsSubTaskList = epicList.get(identifier).getEpicsSubTaskList();
+        Map<Integer, SubTask> epicsSubTaskList = epicList.get(identifier).getEpicsSubTaskList();
 
         for (Integer key : epicsSubTaskList.keySet()) {
             subTaskList.remove(key);
@@ -125,7 +132,7 @@ public class InMemoryTaskManager implements TaskManager{
     }
 
     @Override
-    public HashMap<Integer, SubTask> getEpicSubTasks (@NotNull Epic epic) {
+    public Map<Integer, SubTask> getEpicSubTasks (@NotNull Epic epic) {
         return epicList.get(epic.getIdentifier()).getEpicsSubTaskList();
     }
 
@@ -143,7 +150,7 @@ public class InMemoryTaskManager implements TaskManager{
     }
 
     @Override
-    public ArrayList<Task> getViewingHistory() {
+    public List<Task> getViewingHistory() {
         return historyManager.getHistory();
     }
 }

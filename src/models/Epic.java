@@ -1,10 +1,11 @@
 package models;
 
+import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
 
 public class Epic extends Task{
-    private final HashMap<Integer, SubTask> epicsSubTaskList = new HashMap<>();
+    private final Map<Integer, SubTask> epicsSubTaskList = new HashMap<>();
 
     public Epic (Integer identifier, String taskName, String taskDescription) {
         super(identifier, taskName, taskDescription);
@@ -14,7 +15,7 @@ public class Epic extends Task{
         epicsSubTaskList.put(subTask.getIdentifier(), subTask);
     }
 
-    public HashMap<Integer, SubTask> getEpicsSubTaskList() {
+    public Map<Integer, SubTask> getEpicsSubTaskList() {
         return epicsSubTaskList;
     }
 

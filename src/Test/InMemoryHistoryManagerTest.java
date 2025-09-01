@@ -5,7 +5,7 @@ import managers.TaskManager;
 import models.Task;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 class InMemoryHistoryManagerTest {
@@ -22,7 +22,7 @@ class InMemoryHistoryManagerTest {
         Task task = new Task(1, "Some new task", "Some new description");
         taskManager.addTask(task);
         taskManager.getTaskByID(task.getIdentifier());
-        ArrayList<Task> listOfAddedTasks = taskManager.getViewingHistory();
+        List<Task> listOfAddedTasks = taskManager.getViewingHistory();
         assertFalse(listOfAddedTasks.isEmpty(), "Task wasn't added");
     }
 }
